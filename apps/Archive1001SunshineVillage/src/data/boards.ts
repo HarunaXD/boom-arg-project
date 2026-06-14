@@ -1,4 +1,4 @@
-import type { Board, ForumThread } from '../types';
+import type { Board } from '../types';
 
 export const boards: Board[] = [
   {
@@ -24,84 +24,5 @@ export const boards: Board[] = [
     name: '站务反馈',
     description: '账号串号、密码覆盖和被删掉的申诉。',
     moderator: '论坛管理员',
-  },
-];
-
-export const boardThreads: ForumThread[] = [
-  {
-    id: 'daily',
-    boardId: 'cafe',
-    title: '大家今天吃了吗？',
-    authorUid: '031',
-    createdAt: '2003-08-01 18:21',
-    replies: 1500,
-    pinned: true,
-    summary: '从家常闲聊开始，到302人共同发言结束。',
-  },
-  {
-    id: 'bed',
-    boardId: 'market',
-    title: '急售1.8米双人床，主卧放不下了',
-    authorUid: '142',
-    createdAt: '2003-08-10 10:11',
-    replies: 9,
-    summary: '402住户孙姐说床没有变，房间变了。',
-  },
-  {
-    id: 'wardrobe',
-    boardId: 'market',
-    title: '低价出大衣柜，以前正好的地方现在门关不上',
-    authorUid: '203',
-    createdAt: '2003-08-11 16:08',
-    replies: 5,
-    summary: '502的大衣柜被墙顶住。',
-  },
-  {
-    id: 'kids-bed',
-    boardId: 'market',
-    title: '出儿童床，次卧越来越小，孩子都不敢一个人睡了',
-    authorUid: '177',
-    createdAt: '2003-08-13 09:38',
-    replies: 12,
-    summary: '602的孩子说墙会喘气。',
-  },
-  {
-    id: 'rules',
-    boardId: 'notice',
-    title: '阳光新村一期入住须知',
-    authorUid: '1001',
-    createdAt: '2003-05-01 08:00',
-    replies: 0,
-    pinned: true,
-    summary: '请勿封堵通风口，请勿自行凿开墙体。',
-  },
-  {
-    id: 'floorplan',
-    boardId: 'notice',
-    title: '一期交房户型平面图',
-    authorUid: '1001',
-    createdAt: '2003-05-01 08:03',
-    replies: 0,
-    pinned: true,
-    summary: '原先返回404，拿到足够房号后变为可访问。',
-  },
-  {
-    id: 'zhao-final',
-    boardId: 'feedback',
-    title: '【申诉】凭什么封我号！我没疯！',
-    authorUid: '009',
-    createdAt: '2003-08-12 02:11',
-    replies: 17,
-    locked: true,
-    summary: '老赵留下的绝笔帖。',
-  },
-  {
-    id: 'password',
-    boardId: 'feedback',
-    title: '密码没改过，为什么我能登进我爷爷的号？',
-    authorUid: '283',
-    createdAt: '2003-08-13 21:01',
-    replies: 4,
-    summary: '账号边界开始重叠。',
   },
 ];

@@ -1,0 +1,23 @@
+{
+  "id": "water-meter",
+  "boardId": "cafe",
+  "title": "水表倒着转，是不是管道里进空气了？",
+  "tags": ["domestic", "market-shrink"],
+  "createdAt": "2003-08-11 07:42",
+  "author": { "uid": "031", "name": "李大妈", "room": "305", "avatar": "default" },
+  "posts": [
+    {
+      "id": "water-meter-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "031", "name": "李大妈", "room": "305", "avatar": "default" },
+      "time": "2003-08-11 07:42",
+      "content": "早上淘米的时候听见水管咕噜响，去看水表，数字慢慢往回跳。是不是管道里进空气了？",
+      "flags": ["domestic"],
+      "replies": [
+        { "id": "water-meter-1-r1", "author": { "uid": "215", "name": "装修老李", "room": "302", "avatar": "default" }, "time": "2003-08-11 07:55", "content": "空气不会让表倒转，除非水往楼里吸。" },
+        { "id": "water-meter-1-r2", "author": { "uid": "142", "name": "孙姐", "room": "402", "avatar": "default" }, "time": "2003-08-11 08:08", "content": "我家水槽昨晚自己吐泡，像有人在下面呼气。" }
+      ]
+    }
+  ]
+}

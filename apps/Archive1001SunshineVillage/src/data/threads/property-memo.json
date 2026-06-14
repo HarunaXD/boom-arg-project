@@ -1,0 +1,24 @@
+{
+  "id": "property-memo",
+  "boardId": "notice",
+  "title": "关于近期报修口径统一的内部通知",
+  "tags": ["property-coverup"],
+  "createdAt": "2003-08-13 06:30",
+  "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+  "posts": [
+    {
+      "id": "property-memo-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+      "time": "2003-08-13 06:30",
+      "content": "所有墙体位移、通风口扩大、电梯井异响类报修，统一回复为建材沉降、风压变化或设备电流声。请删除“软化”“回缩”“液体”等描述。",
+      "flags": ["property-coverup"],
+      "revisionOf": { "threadId": "property-memo", "postId": "property-memo-old", "label": "修订前版本", "before": "内部原文：不要让住户继续测量，尤其是靠井房间。" },
+      "evidence": { "type": "coverup", "sourceThreadId": "property-memo", "sourcePostId": "property-memo-1", "uid": "1001", "room": "全部", "time": "2003-08-13 06:30", "label": "物业内部报修口径统一" },
+      "replies": [
+        { "id": "property-memo-1-r1", "author": { "uid": "009", "name": "老赵", "room": "101", "avatar": "default" }, "time": "2003-08-13 06:44", "content": "你们知道。" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "rules",
+  "boardId": "notice",
+  "title": "阳光新村一期入住须知",
+  "tags": ["property-coverup", "cat-vent"],
+  "createdAt": "2003-05-01 08:00",
+  "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+  "pinned": true,
+  "posts": [
+    {
+      "id": "rules-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+      "time": "2003-05-01 08:00",
+      "content": "欢迎您入住阳光新村！本小区采用中央新风系统，通风口已预设，请勿私自拆卸、封堵或更改其开口尺寸。如因封堵造成呼吸不畅或睡眠异常，物业概不负责。如发现墙体有轻微位移或温度变化，属正常建材沉降，请致电物业，切勿自行凿开或破坏。",
+      "flags": ["property-coverup", "cat-vent"],
+      "replies": [
+        { "id": "rules-1-r1", "author": { "uid": "009", "name": "老赵", "room": "101", "avatar": "default" }, "time": "2003-08-12 01:57", "content": "为什么不能封通风口？为什么不能凿墙？" }
+      ]
+    }
+  ]
+}

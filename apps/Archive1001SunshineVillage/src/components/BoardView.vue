@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import type { BoardId } from '../types';
-import { boards, boardThreads } from '../data/boards';
-import { users } from '../data/users';
+import { computed } from 'vue';
+import type { BoardId, GameLocks } from '../types';
+import { boards } from '../data/boards';
+import { boardThreads } from '../data/threadDatabase';
 
 const props = defineProps<{
   boardId: BoardId;
   floorPlanAvailable: boolean;
+  locks: GameLocks;
 }>();
 
 const emit = defineEmits<{
@@ -15,7 +17,16 @@ const emit = defineEmits<{
 }>();
 
 const board = boards.find((item) => item.id === props.boardId)!;
-const threads = boardThreads.filter((thread) => thread.boardId === props.boardId);
+const digestionOrder = ['daily', 'zhao-final', 'rules', 'floorplan', 'bed', 'wardrobe', 'kids-bed', 'password', 'cat-vent', 'property-memo', 'notice-revision'];
+const threads = computed(() => {
+  const list = boardThreads.filter((thread) => thread.boardId === props.boardId);
+  if (!props.locks.s3) return list;
+  return [...list].sort((left, right) => {
+    const leftIndex = digestionOrder.indexOf(left.id);
+    const rightIndex = digestionOrder.indexOf(right.id);
+    return (leftIndex === -1 ? 999 : leftIndex) - (rightIndex === -1 ? 999 : rightIndex);
+  });
+});
 </script>
 
 <template>
@@ -49,11 +60,14 @@ const threads = boardThreads.filter((thread) => thread.boardId === props.boardId
               <span v-if="thread.pinned">[置顶]</span>
               {{ thread.title }}
             </button>
-            <p>{{ thread.summary }}</p>
+            <p class="thread-preview">{{ thread.preview }}</p>
+            <div v-if="thread.tags?.length" class="thread-tags">
+              <span v-for="tag in thread.tags" :key="tag">{{ tag }}</span>
+            </div>
           </td>
-          <td>{{ users[thread.authorUid]?.name ?? '匿名' }}</td>
+          <td>{{ thread.authorName }}</td>
           <td>{{ thread.replies }}</td>
-          <td>{{ thread.createdAt }}</td>
+          <td>{{ locks.s3 ? '2003-08-14 03:02' : thread.createdAt }}</td>
         </tr>
       </tbody>
     </table>

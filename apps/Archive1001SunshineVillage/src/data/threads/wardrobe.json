@@ -1,0 +1,22 @@
+{
+  "id": "wardrobe",
+  "boardId": "market",
+  "title": "低价出大衣柜，以前正好的地方现在门关不上",
+  "tags": ["market-shrink"],
+  "createdAt": "2003-08-11 16:08",
+  "author": { "uid": "203", "name": "柜子出不去", "room": "502", "avatar": "default" },
+  "posts": [
+    {
+      "id": "wardrobe-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "203", "name": "柜子出不去", "room": "502", "avatar": "default" },
+      "time": "2003-08-11 16:08",
+      "content": "大衣柜低价出，以前正好的地方现在门关不上。502，楼下帮忙抬走。",
+      "flags": ["market-shrink"],
+      "replies": [
+        { "id": "wardrobe-1-r1", "author": { "uid": "142", "name": "孙姐", "room": "402", "avatar": "default" }, "time": "2003-08-11 16:18", "content": "别抬了，楼道可能也过不去。" }
+      ]
+    }
+  ]
+}

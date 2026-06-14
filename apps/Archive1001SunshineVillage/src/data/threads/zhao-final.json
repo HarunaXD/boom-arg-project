@@ -1,0 +1,34 @@
+{
+  "id": "zhao-final",
+  "boardId": "feedback",
+  "title": "【申诉】凭什么封我号！我没疯！",
+  "tags": ["mainline", "property-coverup"],
+  "createdAt": "2003-08-12 02:11",
+  "author": { "uid": "009", "name": "老赵", "room": "101", "avatar": "default" },
+  "locked": true,
+  "posts": [
+    {
+      "id": "zhao-final-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "009", "name": "老赵", "room": "101", "avatar": "default" },
+      "time": "2003-08-12 02:11",
+      "content": "物业经理就是个骗子！你们去凿主卧那面墙！凿到五厘米深根本不是砖，是肉红色的软胶！改锥拔出来全是黄黏液，墙还会自己往回缩！别住一楼了，快搬走啊！！！",
+      "flags": ["mainline"],
+      "replies": [
+        { "id": "zhao-final-1-r1", "author": { "uid": "101", "name": "小周", "room": "101", "avatar": "default" }, "time": "2003-08-12 02:13", "content": "赵叔你先别敲了，楼道里全是味。" },
+        { "id": "zhao-final-1-r2", "author": { "uid": "334", "name": "失眠的猫", "room": "未知", "avatar": "default" }, "time": "2003-08-12 02:15", "content": "他没有疯。墙在愈合。" }
+      ]
+    },
+    {
+      "id": "zhao-final-2",
+      "floor": 2,
+      "page": 1,
+      "author": { "uid": "1001", "name": "论坛管理员", "room": "全部", "avatar": "default" },
+      "time": "2003-08-12 02:16",
+      "content": "用户“老赵”因散布不实信息被永久禁言，请不信谣、不传谣。",
+      "flags": ["property-coverup"],
+      "replies": []
+    }
+  ]
+}

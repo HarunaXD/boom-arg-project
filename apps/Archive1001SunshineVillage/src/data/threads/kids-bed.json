@@ -1,0 +1,23 @@
+{
+  "id": "kids-bed",
+  "boardId": "market",
+  "title": "出儿童床，次卧越来越小，孩子都不敢一个人睡了",
+  "tags": ["market-shrink", "cat-vent"],
+  "createdAt": "2003-08-13 09:38",
+  "author": { "uid": "177", "name": "小宝妈", "room": "602", "avatar": "default" },
+  "posts": [
+    {
+      "id": "kids-bed-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "177", "name": "小宝妈", "room": "602", "avatar": "default" },
+      "time": "2003-08-13 09:38",
+      "content": "儿童床不要了，次卧越来越小，孩子说晚上墙会靠过来。602自提，越快越好。",
+      "flags": ["market-shrink"],
+      "replies": [
+        { "id": "kids-bed-1-r1", "author": { "uid": "123", "name": "家有咪咪", "room": "503", "avatar": "default" }, "time": "2003-08-13 09:50", "content": "我家猫也不进次卧，它只盯着通风口。" },
+        { "id": "kids-bed-1-r2", "author": { "uid": "334", "name": "失眠的猫", "room": "未知", "avatar": "default" }, "time": "2003-08-13 10:02", "content": "把风口先封住，今晚别睡太沉。" }
+      ]
+    }
+  ]
+}

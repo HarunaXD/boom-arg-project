@@ -1,0 +1,23 @@
+{
+  "id": "balcony-plants",
+  "boardId": "cafe",
+  "title": "阳台绿萝都往屋里长，大家有这个情况吗？",
+  "tags": ["domestic", "cat-vent"],
+  "createdAt": "2003-08-09 15:20",
+  "author": { "uid": "225", "name": "小甜心", "room": "409", "avatar": "default" },
+  "posts": [
+    {
+      "id": "balcony-plants-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "225", "name": "小甜心", "room": "409", "avatar": "default" },
+      "time": "2003-08-09 15:20",
+      "content": "我妈说绿萝喜阴，可我这盆以前一直朝阳台外面长，这两天叶子全转回屋里，像在看通风口。",
+      "flags": ["domestic", "cat-vent"],
+      "replies": [
+        { "id": "balcony-plants-1-r1", "author": { "uid": "123", "name": "家有咪咪", "room": "503", "avatar": "default" }, "time": "2003-08-09 15:33", "content": "我家猫也看通风口。它们是不是听见同一个声音？" },
+        { "id": "balcony-plants-1-r2", "author": { "uid": "088", "name": "李大爷", "room": "301", "avatar": "default" }, "time": "2003-08-09 15:48", "content": "植物没有耳朵。可是我刚打完这句，它的叶子动了一下。" }
+      ]
+    }
+  ]
+}

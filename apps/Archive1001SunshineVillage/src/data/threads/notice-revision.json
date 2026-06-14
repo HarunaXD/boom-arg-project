@@ -1,0 +1,24 @@
+{
+  "id": "notice-revision",
+  "boardId": "notice",
+  "title": "入住须知修订记录 2003-08-13",
+  "tags": ["property-coverup"],
+  "createdAt": "2003-08-13 08:13",
+  "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+  "posts": [
+    {
+      "id": "notice-revision-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+      "time": "2003-08-13 08:13",
+      "content": "修订：将“墙体回缩”统一替换为“建材沉降”；将“通风口扩大”统一替换为“风压变化”；删除“黄色黏液”“软组织”等非规范描述。",
+      "flags": ["property-coverup"],
+      "revisionOf": { "threadId": "notice-revision", "postId": "notice-revision-old", "label": "修订前版本", "before": "原始词表：墙体回缩、通风口扩大、黄色黏液、软组织、电梯井内侧。" },
+      "evidence": { "type": "coverup", "sourceThreadId": "notice-revision", "sourcePostId": "notice-revision-1", "uid": "1001", "room": "全部", "time": "2003-08-13 08:13", "label": "公告修订词表泄漏" },
+      "replies": [
+        { "id": "notice-revision-1-r1", "author": { "uid": "334", "name": "失眠的猫", "room": "未知", "avatar": "default" }, "time": "2003-08-13 08:22", "content": "你们删掉词，东西还在。" }
+      ]
+    }
+  ]
+}

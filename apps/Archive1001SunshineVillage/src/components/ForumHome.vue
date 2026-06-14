@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { BoardId, GameLocks } from '../types';
-import { boards, boardThreads } from '../data/boards';
+import { boards } from '../data/boards';
+import { boardThreads } from '../data/threadDatabase';
 
 defineProps<{
   locks: GameLocks;
   onlineCount: number;
+  recentRecords: string[];
 }>();
 
 const emit = defineEmits<{
@@ -42,5 +44,12 @@ const emit = defineEmits<{
       <button type="button" @click="emit('openThread', 'daily')">进入置顶热帖</button>
       <button type="button" @click="emit('openPlan')" :disabled="!locks.s1">查看户型图</button>
     </div>
+
+    <section class="recent-records">
+      <h2>最近浏览</h2>
+      <ol>
+        <li v-for="record in recentRecords" :key="record">{{ record }}</li>
+      </ol>
+    </section>
   </section>
 </template>

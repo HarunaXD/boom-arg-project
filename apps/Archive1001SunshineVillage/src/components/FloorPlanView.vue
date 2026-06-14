@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, computed } from 'vue';
+import { computed, watch } from 'vue';
+import type { EvidenceRecord } from '../types';
 
 const props = defineProps<{
   inspectedRooms: string[];
+  evidenceLog: EvidenceRecord[];
 }>();
 
 const emit = defineEmits<{
@@ -10,20 +12,19 @@ const emit = defineEmits<{
   unlockSpace: [];
 }>();
 
-let timer = 0;
-const evidenceCount = computed(() => new Set(props.inspectedRooms).size);
+const spaceEvidence = computed(() => props.evidenceLog.filter((item) => item.type === 'space'));
+const evidenceRooms = computed(() => new Set([...props.inspectedRooms, ...spaceEvidence.value.map((item) => item.room)]));
+const evidenceCount = computed(() => evidenceRooms.value.size);
 
-onMounted(() => {
-  timer = window.setTimeout(() => {
+watch(
+  evidenceCount,
+  () => {
     if (evidenceCount.value >= 2) {
       emit('unlockSpace');
     }
-  }, 5000);
-});
-
-onUnmounted(() => {
-  window.clearTimeout(timer);
-});
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -33,14 +34,12 @@ onUnmounted(() => {
       <span>一期交房户型平面图 - 扫描件</span>
     </div>
     <div class="floorplan">
-      <div class="room">302<br />客厅贴井</div>
-      <div class="room">402<br />主卧贴井</div>
-      <div class="shaft">公共电梯井</div>
-      <div class="room">502<br />衣柜贴井</div>
-      <div class="room">602<br />次卧贴井</div>
+      <div class="room" :class="{ marked: evidenceRooms.has('302') }">302<br />客厅贴井<span v-if="evidenceRooms.has('302')">泡沫垫尺寸异常</span></div>
+      <div class="room" :class="{ marked: evidenceRooms.has('402') }">402<br />主卧贴井<span v-if="evidenceRooms.has('402')">床位回退 6cm</span></div>
+      <div class="shaft" :class="{ awake: evidenceCount >= 2 }">{{ evidenceCount >= 2 ? '公共井 / 胃井 / 井内侧' : '公共电梯井' }}</div>
+      <div class="room" :class="{ marked: evidenceRooms.has('502') }">502<br />衣柜贴井<span v-if="evidenceRooms.has('502')">柜门开合不足</span></div>
+      <div class="room" :class="{ marked: evidenceRooms.has('602') }">602<br />次卧贴井<span v-if="evidenceRooms.has('602')">门框位移</span></div>
     </div>
-    <p class="plan-note">
-      已点开 {{ evidenceCount }} 个空间异常住户资料卡。停留五秒后，若证据足够，系统会解除下一段归档。
-    </p>
+    <p class="plan-note">扫描仪批注：比对记录：{{ evidenceCount }} 处尺寸不一致。</p>
   </section>
 </template>

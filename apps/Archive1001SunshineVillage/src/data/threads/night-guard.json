@@ -1,0 +1,33 @@
+{
+  "id": "night-guard",
+  "boardId": "feedback",
+  "title": "门卫夜班巡逻记录，6栋电梯口总有人影",
+  "tags": ["night-watch", "property-coverup"],
+  "createdAt": "2003-08-12 04:18",
+  "author": { "uid": "056", "name": "夜归人", "room": "606", "avatar": "default" },
+  "posts": [
+    {
+      "id": "night-guard-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "056", "name": "夜归人", "room": "606", "avatar": "default" },
+      "time": "2003-08-12 04:18",
+      "content": "我下夜班回来，看门卫老钱在值班室睡着，桌上摊着巡逻本。6栋电梯口 02:13、02:17、02:26 都写着“有人站内侧”，可电梯门没开过。",
+      "flags": ["night-watch"],
+      "replies": [
+        { "id": "night-guard-1-r1", "author": { "uid": "1001", "name": "论坛管理员", "room": "全部", "avatar": "default" }, "time": "2003-08-12 08:02", "content": "请勿擅自传播安保内部记录，相关内容将转交物业处理。" },
+        { "id": "night-guard-1-r2", "author": { "uid": "334", "name": "失眠的猫", "room": "未知", "avatar": "default" }, "time": "2003-08-12 08:19", "content": "站在内侧的不是人，是门打开前先学会站姿的东西。" }
+      ]
+    },
+    {
+      "id": "night-guard-2",
+      "floor": 2,
+      "page": 1,
+      "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+      "time": "2003-08-12 08:30",
+      "content": "经核实，巡逻记录为值班人员误填。6栋电梯运行正常。",
+      "flags": ["property-coverup"],
+      "replies": []
+    }
+  ]
+}

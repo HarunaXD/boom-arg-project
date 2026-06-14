@@ -1,0 +1,23 @@
+{
+  "id": "cat-vent",
+  "boardId": "cafe",
+  "title": "猫一直盯着通风口，是不是里面有老鼠？",
+  "tags": ["cat-vent"],
+  "createdAt": "2003-08-12 22:03",
+  "author": { "uid": "123", "name": "家有咪咪", "room": "503", "avatar": "default" },
+  "posts": [
+    {
+      "id": "cat-vent-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "123", "name": "家有咪咪", "room": "503", "avatar": "default" },
+      "time": "2003-08-12 22:03",
+      "content": "猫从昨天开始不睡窝了，一直趴在通风口下面哈气。通风口里面会不会有老鼠？",
+      "flags": ["cat-vent"],
+      "replies": [
+        { "id": "cat-vent-1-r1", "author": { "uid": "334", "name": "失眠的猫", "room": "未知", "avatar": "default" }, "time": "2003-08-12 22:11", "content": "不是老鼠。你听见它叫的时候，先别吸气。" },
+        { "id": "cat-vent-1-r2", "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" }, "time": "2003-08-12 22:18", "content": "请勿私自封堵通风口，以免影响中央新风循环。" }
+      ]
+    }
+  ]
+}

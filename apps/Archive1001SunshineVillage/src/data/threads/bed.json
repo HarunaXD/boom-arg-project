@@ -1,0 +1,23 @@
+{
+  "id": "bed",
+  "boardId": "market",
+  "title": "急售1.8米双人床，主卧放不下了",
+  "tags": ["market-shrink"],
+  "createdAt": "2003-08-10 10:11",
+  "author": { "uid": "142", "name": "孙姐", "room": "402", "avatar": "default" },
+  "posts": [
+    {
+      "id": "bed-1",
+      "floor": 1,
+      "page": 1,
+      "author": { "uid": "142", "name": "孙姐", "room": "402", "avatar": "default" },
+      "time": "2003-08-10 10:11",
+      "content": "急售1.8米双人床，主卧那个凹槽突然放不下了。床没变形，我拿卷尺量过。402自提。",
+      "flags": ["market-shrink"],
+      "replies": [
+        { "id": "bed-1-r1", "author": { "uid": "215", "name": "装修老李", "room": "302", "avatar": "default" }, "time": "2003-08-10 10:22", "content": "你别急卖，先量房间，床可能没问题。" },
+        { "id": "bed-1-r2", "author": { "uid": "203", "name": "柜子出不去", "room": "502", "avatar": "default" }, "time": "2003-08-10 10:43", "content": "我这里柜子也像被墙吃住了。" }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { boardThreads } from '../data/boards';
-import { users } from '../data/users';
+import { boardThreads, searchThreads } from '../data/threadDatabase';
 
 const props = defineProps<{
   keyword: string;
@@ -13,9 +12,12 @@ const emit = defineEmits<{
 
 const normalized = props.keyword.trim().toLowerCase();
 const isZhao = normalized.includes('老赵') || normalized.includes('009');
+const isSensitive = ['墙', '黄水', '凿墙', '软', '回缩'].some((word) => props.keyword.includes(word));
 const results = isZhao
   ? boardThreads.filter((thread) => ['zhao-final', 'daily'].includes(thread.id))
-  : boardThreads.filter((thread) => thread.title.toLowerCase().includes(normalized) || users[thread.authorUid]?.name.includes(props.keyword));
+  : isSensitive
+    ? boardThreads.filter((thread) => ['zhao-final', 'notice-revision', 'property-memo', 'daily'].includes(thread.id))
+  : searchThreads(props.keyword);
 </script>
 
 <template>
@@ -25,14 +27,17 @@ const results = isZhao
       <span>搜索：{{ keyword }}</span>
     </div>
 
-    <div v-if="isZhao" class="warning">
-      用户“老赵”因散布不实信息被永久禁言，请不信谣、不传谣。
+    <div v-if="isZhao || isSensitive" class="warning">
+      检索词命中屏蔽表。以下结果来自处理记录缓存，标题可能已被修订。
     </div>
 
     <ul class="search-results">
       <li v-for="thread in results" :key="thread.id">
         <button type="button" class="linklike" @click="emit('openThread', thread.id)">{{ thread.title }}</button>
-        <p>{{ thread.summary }}</p>
+        <p class="thread-preview">{{ thread.preview }}</p>
+        <div v-if="thread.tags.length" class="thread-tags">
+          <span v-for="tag in thread.tags" :key="tag">{{ tag }}</span>
+        </div>
       </li>
     </ul>
 

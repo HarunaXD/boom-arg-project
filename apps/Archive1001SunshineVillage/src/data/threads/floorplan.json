@@ -1,0 +1,10 @@
+{
+  "id": "floorplan",
+  "boardId": "notice",
+  "title": "一期交房户型平面图",
+  "tags": ["market-shrink", "property-coverup"],
+  "createdAt": "2003-05-01 08:03",
+  "author": { "uid": "1001", "name": "阳光物业_01", "room": "全部", "avatar": "default" },
+  "pinned": true,
+  "posts": []
+}
