@@ -24,6 +24,8 @@ importers:
 
   apps/Archive1001SunshineVillage: {}
 
+  apps/Archive1002Ædvent: {}
+
 packages:
 
   '@babel/helper-string-parser@7.29.7':
