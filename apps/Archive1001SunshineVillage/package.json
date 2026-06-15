@@ -2,5 +2,11 @@
   "name": "@arg-project/archive1001-sunshine-village",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "node ../../build/dev.mjs",
+    "build": "node ../../build/build.mjs",
+    "preview": "node ../../build/preview.mjs",
+    "test": "node ../../test.mjs"
+  }
 }

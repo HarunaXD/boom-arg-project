@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
 import { resolveProject } from './build/project.mjs';
 
-const { name, appRoot } = resolveProject(process.argv[2]);
+const { name, appRoot, repoRoot } = resolveProject(process.argv[2]);
 const port = Number(process.env.PLAYWRIGHT_PORT ?? 4177);
 const baseURL = `http://127.0.0.1:${port}/`;
 const testDir = resolve(appRoot, '__tests__');
@@ -11,7 +11,7 @@ const server = spawn(
   process.execPath,
   ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', String(port), '--strictPort', '--config', 'build/vite.config.mjs'],
   {
-    cwd: process.cwd(),
+    cwd: repoRoot,
     env: { ...process.env, APP_NAME: name },
     stdio: ['ignore', 'pipe', 'pipe'],
   },
@@ -58,7 +58,7 @@ try {
   await ready;
 
   const playwright = spawn('node_modules/.bin/playwright', ['test', testDir, '--workers=1'], {
-    cwd: process.cwd(),
+    cwd: repoRoot,
     env: {
       ...process.env,
       PLAYWRIGHT_BASE_URL: baseURL,
