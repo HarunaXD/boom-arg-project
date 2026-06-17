@@ -6,7 +6,7 @@ async function resetGame(page: import('@playwright/test').Page) {
   await page.goto(baseURL);
   await page.evaluate(() => window.localStorage.clear());
   await page.goto(`${baseURL}?testMode=1`);
-  await expect(page.getByRole('heading', { name: /凝视直到图片开始回看你/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /今天也要为 Æ 投下漂亮的一票/ })).toBeVisible();
 }
 
 async function terminal(page: import('@playwright/test').Page, command: string) {
@@ -31,6 +31,12 @@ test('玩家能走通主线、关键支线和结局', async ({ page }) => {
   await page.getByLabel('left iris archive').hover();
   await expect(page.locator('.pixel-drop')).toContainText('094', { timeout: 5000 });
 
+  await openNav(page, 'DEVO', 'devotees');
+  await expect(page.locator('.devotee-table')).toContainText('094号信徒');
+  await expect(page.locator('.devotee-table')).toContainText('[已收割]');
+  await page.getByRole('button', { name: '[已收割]' }).click();
+
+  await openNav(page, 'GALL', 'gallery');
   await page.locator('[data-photo-id="photo-2"]').click({ button: 'right' });
   await page.getByRole('button', { name: '镜像翻转' }).click();
   await page.getByLabel('reverse lip print').hover();
@@ -42,22 +48,15 @@ test('玩家能走通主线、关键支线和结局', async ({ page }) => {
   await expect(page.locator('.product-card').filter({ hasText: '限量版血滴项链' })).toContainText('BLD-O-NEG-0412');
 
   await terminal(page, 'QUERY:VERIFY');
-  await expect(page.locator('.terminal-log')).toContainText('无效查询');
+  await expect(page.locator('.terminal-log')).toContainText('检索失败');
   await terminal(page, 'BLD-O-NEG-0412');
   await expect(page.locator('.terminal-log')).toContainText('DATABASE BREACH');
   await terminal(page, 'QUERY:VERIFY');
   await expect(page.locator('.terminal-log')).toContainText('VERIFY TABLE');
   await terminal(page, 'DONOR-PREP-ROOM-03');
-  await expect(page.locator('.terminal-log')).toContainText('准备室编号缺少楼层');
+  await expect(page.locator('.terminal-log')).toContainText('房间号缺少楼层');
   await terminal(page, 'H-042');
-  await expect(page.locator('.terminal-log')).toContainText('定制手模购买者备注');
-  await terminal(page, 'EYE-094');
-  await expect(page.locator('.terminal-log')).toContainText('请先在 Devotees 确认');
-
-  await openNav(page, 'DEVO', 'devotees');
-  await expect(page.locator('.devotee-table')).toContainText('094号信徒');
-  await expect(page.locator('.devotee-table')).toContainText('[已收割]');
-  await page.getByRole('button', { name: '[已收割]' }).click();
+  await expect(page.locator('.terminal-log')).toContainText('定制手模备注');
   await terminal(page, 'EYE-094');
   await expect(page.locator('.terminal-log')).toContainText('EYE FILE #094');
 

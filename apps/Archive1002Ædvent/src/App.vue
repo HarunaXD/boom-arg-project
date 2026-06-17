@@ -15,7 +15,7 @@ const TEST_MODE = new URLSearchParams(window.location.search).has('testMode');
 const countdownSeconds = TEST_MODE ? 30 : 10;
 const initialState = readSavedState();
 
-const view = ref<ViewId>(window.location.pathname.endsWith('/v1') || initialState.v1Unlocked ? 'gallery' : 'gallery');
+const view = ref<ViewId>(window.location.pathname.endsWith('/v1') ? 'v1' : 'gallery');
 const terminalInput = ref('');
 const terminalHistory = ref<TerminalEntry[]>(initialState.terminalHistory);
 const state = reactive<GameState>(initialState);
@@ -33,6 +33,23 @@ let countdownTimer = 0;
 let onlineTimer = 0;
 
 const visibleNavItems = computed(() => navItems.filter((item) => !item.hidden || state.v1Unlocked));
+const caseNotes = computed(() => {
+  const notes = [];
+  notes.push('镜像站伪装为 2000 年代粉丝官网，图片与商品页优先复核。');
+  if (state.triggeredHotspots['eye-left']) notes.push('编号 094 首次出现在圣像眼部，请去粉丝榜确认它是不是账号。');
+  if (state.sideQuests.eye094Confirmed) notes.push('094 已在粉丝榜中确认。它不是编号，是被处理过的人。');
+  if (state.triggeredHotspots.mouth) notes.push('嘴唇反写的房间号缺少楼层，周边页可能有后台平面图。');
+  if (state.sideQuests.donorRoom) notes.push('草莓奶昔状态已改变。她的最后一句话不是留言，是体征记录。');
+  if (state.v1Unlocked) notes.push('V1.0 归档暴露。这个粉丝站不是第一次上线。');
+  if (state.endingStarted && !state.endingType) notes.push('会话开始倒计时。请在断开前完成交叉验证。');
+  return notes.slice(-4);
+});
+const lockedReasons = computed<Partial<Record<ViewId, string>>>(() => ({
+  scanner: state.terminalUnlocked ? '' : '检测仪尚未开放',
+  devotees: state.triggeredHotspots['eye-left'] ? '' : '需要先在美图中找到粉丝编号',
+  boutique: state.sideQuests.eye094Confirmed ? '' : '需要先确认 094 的粉丝状态',
+  v1: state.v1Unlocked ? '' : '入口未暴露',
+}));
 const onlineCount = computed(() => {
   if (state.endingType) return 1;
   if (state.terminalUnlocked) return [47, 23, 9, 4, 1][onlineTick.value % 5];
@@ -96,7 +113,7 @@ function readSavedState(): GameState {
     terminalHistory: [
       {
         kind: 'system',
-        text: 'AE-FANCLUB DATABASE ONLINE // 请输入产品防伪码',
+        text: 'Æ100 SUPPORT SITE // 周边防伪码查询已开放',
       },
     ],
   };
@@ -119,6 +136,12 @@ function readSavedState(): GameState {
 }
 
 function setView(nextView: ViewId) {
+  const lockedReason = lockedReasons.value[nextView];
+  if (lockedReason) {
+    terminalHistory.value.push({ kind: 'error', text: `镜像站拒绝跳转：${lockedReason}。` });
+    persistState();
+    return;
+  }
   view.value = nextView;
   if (nextView === 'v1') {
     state.v1Unlocked = true;
@@ -192,7 +215,7 @@ function submitTerminal() {
     });
     terminalHistory.value.push({
       kind: 'system',
-      text: '提示：QUERY:VERIFY 可显示防伪码查询表。会话将在采样完成后断开。',
+      text: '站内检索更新：QUERY:VERIFY 被加入推荐词。会话将在采样完成后断开。',
     });
     persistState();
     startCountdown();
@@ -236,13 +259,13 @@ function handleKnownCommand(command: string) {
 
 function verifyCrossPageGate(command: string) {
   if (command === 'EYE-094' && !state.sideQuests.eye094Confirmed) {
-    return '交叉验证失败：094 只是掉落像素。请先在 Devotees 确认 094号信徒 的状态。';
+    return '检索被折叠：094 需要先在粉丝榜中确认。';
   }
   if (command === 'H-042' && !state.sideQuests.handBuyerConfirmed) {
-    return '交叉验证失败：H-042 需要 Gallery 手链编码 + Boutique 定制手模购买者备注 #094。';
+    return '检索被折叠：H-042 需要同时出现在美图挂饰和定制手模备注中。';
   }
   if (command === 'DONOR-PREP-ROOM-03' && !state.sideQuests.donorB2Confirmed) {
-    return '交叉验证失败：准备室编号缺少楼层。请在 VIP 邀请函封蜡平面图里确认 B2。';
+    return '检索被折叠：房间号缺少楼层。VIP 邀请函封蜡图案里有后台标注。';
   }
   return '';
 }
@@ -254,8 +277,8 @@ function pushInvalid() {
     kind: 'error',
     text:
       state.invalidTerminalInputs > 9
-        ? '无效查询。提示：尝试查询产品上的编码。'
-        : '无效查询。请输入有效的产品防伪码。',
+        ? '检索失败。旧站索引反复指向“商品标签”。'
+        : '检索失败。该词不在应援站公开目录中。',
   });
   persistState();
 }
@@ -328,7 +351,7 @@ function requestContact() {
 </script>
 
 <template>
-  <div class="app-shell" :class="{ 'is-ending': view === 'ending' }">
+  <div class="app-shell" :class="{ 'is-ending': view === 'ending', 'is-breached': state.terminalUnlocked }">
     <aside class="sidebar" aria-label="Project-Æ navigation">
       <button class="brand-mark" type="button" @click="setView('gallery')">Æ</button>
       <nav class="nav-stack">
@@ -336,9 +359,10 @@ function requestContact() {
           v-for="item in visibleNavItems"
           :key="item.id"
           class="nav-tab"
-          :class="{ active: view === item.id }"
+          :class="{ active: view === item.id, locked: Boolean(lockedReasons[item.id]) }"
           type="button"
           @click="setView(item.id)"
+          :title="lockedReasons[item.id] || ''"
         >
           <strong>{{ item.code }}</strong>
           <span>{{ item.label }}</span>
@@ -356,7 +380,7 @@ function requestContact() {
             v-model="terminalInput"
             aria-label="终端查询"
             autocomplete="off"
-            placeholder="请输入有效的产品防伪码"
+          placeholder="输入周边防伪码 / 站内关键词"
             @keydown.delete="addWeight('heart', 1)"
           />
         </form>
@@ -372,6 +396,11 @@ function requestContact() {
           {{ entry.text }}
         </p>
       </section>
+
+      <aside class="case-notes" aria-label="案件记录">
+        <strong>巡查便笺</strong>
+        <p v-for="note in caseNotes" :key="note">{{ note }}</p>
+      </aside>
 
       <GalleryView
         v-if="view === 'gallery'"
